@@ -41,9 +41,10 @@ module Wordle
       end
 
       if winner
-        puts "winner!"
+        puts "Winner!"
       else
-        puts "better luck next time!"
+        puts "Word was: #{@target_word}"
+        puts "Better luck next time!"
       end
     end
 
