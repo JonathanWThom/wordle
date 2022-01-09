@@ -4,10 +4,14 @@ class String
   end
 
   def green
-    colorize(32)
+    colorize(42)
   end
 
   def yellow
-    colorize(33)
+    colorize(43)
+  end
+
+  def gray
+    colorize(47)
   end
 end
