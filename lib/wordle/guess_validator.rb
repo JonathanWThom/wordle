@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Wordle
   class GuessValidator
     attr_reader :error

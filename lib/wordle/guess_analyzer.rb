@@ -14,17 +14,17 @@ module Wordle
     end
 
     def colors
-      target_letters = @target_word.split("")
-      guess_letters = @guess.split("")
+      target_letters = @target_word.chars
+      guess_letters = @guess.chars
       colored_letters = ""
 
       guess_letters.each_with_index do |letter, i|
-        if letter == target_letters[i]
-          colored_letters += letter.green
+        colored_letters += if letter == target_letters[i]
+          letter.green
         elsif target_letters.include?(letter)
-          colored_letters += letter.yellow
+          letter.yellow
         else
-          colored_letters += letter.gray
+          letter.gray
         end
       end
 

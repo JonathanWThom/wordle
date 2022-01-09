@@ -18,11 +18,9 @@ module Wordle
 
     def list
       # fall back to api if this fails?
-      @_list ||= begin
-        File.readlines("/usr/share/dict/words").select do |word|
-          word.strip.length == @length
-        end.map { |w| w.downcase.strip } # sanitize class to standarize this?
-      end
+      @_list ||= File.readlines("/usr/share/dict/words").select do |word|
+                   word.strip.length == @length
+                 end.map { |w| w.downcase.strip } # sanitize class to standarize this?
     end
   end
 end
