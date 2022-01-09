@@ -7,6 +7,7 @@ module Wordle
     end
 
     def initialize
+      @list = List.new
       @target_word = generate_word
     end
 
@@ -22,7 +23,7 @@ module Wordle
       while attempts < 6 && !winner
         guess = gets.chomp
 
-        validator = GuessValidator.new(guess)
+        validator = GuessValidator.new(guess, @list)
         if validator.invalid?
           puts validator.error
           next
@@ -49,8 +50,7 @@ module Wordle
     private
 
     def generate_word
-      # maybe its own class
-      "gorge"
+      @list.random
     end
   end
 end
