@@ -21,6 +21,13 @@ module Wordle
 
       while attempts < 6 && !winner
         guess = gets.chomp
+
+        validator = GuessValidator.new(guess)
+        if validator.invalid?
+          puts validator.error
+          next
+        end
+
         analyzer = GuessAnalyzer.new(@target_word, guess)
         puts analyzer.colors
 
