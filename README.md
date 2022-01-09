@@ -2,6 +2,8 @@
 
 Ruby implementation of [Wordle](https://www.powerlanguage.co.uk/wordle/).
 
+<img width="304" alt="Screen Shot 2022-01-09 at 3 06 39 PM" src="https://user-images.githubusercontent.com/22665228/148704931-dc74bc7a-8987-4ecd-a83d-678e647d20b5.png">
+
 ## Installation
 
 `gem install wordle`
