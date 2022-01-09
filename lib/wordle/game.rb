@@ -18,7 +18,7 @@ module Wordle
       winner = false
       attempts = 0
 
-      puts "Guess: "
+      puts "Guess a 5 letter word: "
 
       while attempts < 6 && !winner
         guess = gets.chomp
