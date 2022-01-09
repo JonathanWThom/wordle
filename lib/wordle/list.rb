@@ -11,16 +11,17 @@ module Wordle
     end
 
     def invalid?(word)
-      false
+      !list.include?(word)
     end
 
     private
 
     def list
+      # fall back to api if this fails?
       @_list ||= begin
-        yes = File.readlines("/usr/share/dict/words").select do |word|
+        File.readlines("/usr/share/dict/words").select do |word|
           word.strip.length == @length
-        end
+        end.map { |w| w.downcase.strip } # sanitize class to standarize this?
       end
     end
   end
