@@ -4,7 +4,7 @@ Ruby implementation of [Wordle](https://www.powerlanguage.co.uk/wordle/).
 
 ## Installation
 
-$ gem install wordle
+`gem install wordle`
 
 ## Usage
 
