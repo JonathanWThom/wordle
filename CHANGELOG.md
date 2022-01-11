@@ -1,4 +1,6 @@
-## [Unreleased]
+## [0.2.1] - 2022-01-10
+
+- Adds legend for colors
 
 ## [0.2.0] - 2022-01-09
 

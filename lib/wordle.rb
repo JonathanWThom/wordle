@@ -5,6 +5,7 @@ require_relative "wordle/version"
 require_relative "wordle/list"
 require_relative "wordle/guess_validator"
 require_relative "wordle/guess_analyzer"
+require_relative "wordle/legend"
 require_relative "wordle/game"
 
 module Wordle

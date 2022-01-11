@@ -18,6 +18,7 @@ module Wordle
       winner = false
       attempts = 0
 
+      Legend.print
       puts "Guess a 5 letter word: "
 
       while attempts < 6 && !winner
