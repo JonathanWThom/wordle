@@ -4,7 +4,6 @@ Ruby implementation of [Wordle](https://www.powerlanguage.co.uk/wordle/).
 
 <img width="794" alt="Screen Shot 2022-01-10 at 9 18 19 PM" src="https://user-images.githubusercontent.com/22665228/148885575-39805830-274e-40e6-be14-4c6bc6db37ec.png">
 
-
 ## Installation
 
 `gem install wordle`
@@ -22,6 +21,10 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/JonathanWThom/wordle. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/JonathanWThom/wordle/blob/main/CODE_OF_CONDUCT.md).
+
+## Acknowledgements
+
+I cribbed my word list from the Wordle site itself. I have no association with the site or its creator, I'm just a fan!
 
 ## License
 
