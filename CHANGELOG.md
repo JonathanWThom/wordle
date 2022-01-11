@@ -1,3 +1,7 @@
+## [0.3.0] - 2022-01-10
+
+- Adds a better world list. From the Wordle source itself : )
+
 ## [0.2.1] - 2022-01-10
 
 - Adds legend for colors
