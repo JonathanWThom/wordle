@@ -16,19 +16,26 @@ module Wordle
     def colors
       target_letters = @target_word.chars
       guess_letters = @guess.chars
-      colored_letters = ""
+      colored_letters = []
 
       guess_letters.each_with_index do |letter, i|
-        colored_letters += if letter == target_letters[i]
-          letter.green
-        elsif target_letters.include?(letter)
-          letter.yellow
-        else
-          letter.gray
+        if letter == target_letters[i]
+          colored_letters[i] = letter.green
+          target_letters[i] = nil
         end
       end
 
-      colored_letters
+      guess_letters.each_with_index do |letter, i|
+        if colored_letters[i].nil?
+          colored_letters[i] = if target_letters.include?(letter)
+            letter.yellow
+          else
+            letter.gray
+          end
+        end
+      end
+
+      colored_letters.join("")
     end
   end
 end

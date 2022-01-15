@@ -1,3 +1,8 @@
+## [0.4.0] - 2022-01-14
+
+- Fixes bug where too many letters would get marked as yellow. Resolves
+    [https://github.com/JonathanWThom/wordle/issues/3](https://github.com/JonathanWThom/wordle/issues/3).
+
 ## [0.3.0] - 2022-01-10
 
 - Adds a better world list. From the Wordle source itself : )
