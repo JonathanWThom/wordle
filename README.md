@@ -2,7 +2,7 @@
 
 Ruby implementation of [Wordle](https://www.powerlanguage.co.uk/wordle/).
 
-<img width="794" alt="Screen Shot 2022-01-10 at 9 18 19 PM" src="https://user-images.githubusercontent.com/22665228/148885575-39805830-274e-40e6-be14-4c6bc6db37ec.png">
+<img width="785" alt="Screen Shot 2022-01-14 at 8 10 22 PM" src="https://user-images.githubusercontent.com/22665228/149608330-f5514be8-c0d9-4860-9ed4-d652fdb35cb3.png">
 
 ## Installation
 
@@ -11,6 +11,8 @@ Ruby implementation of [Wordle](https://www.powerlanguage.co.uk/wordle/).
 ## Usage
 
 Just run `wordle` from the command line.
+
+This version will pull a new word at random every time you run it from a very weird and long list. It's much more difficult that original due to some of the words being a bit uncommon.
 
 ## Development
 
