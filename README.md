@@ -12,7 +12,7 @@ Ruby implementation of [Wordle](https://www.powerlanguage.co.uk/wordle/).
 
 Just run `wordle` from the command line.
 
-This version will pull a new word at random every time you run it from a very weird and long list. It's much more difficult that original due to some of the words being a bit uncommon.
+This version will pull a new word at random every time you run it from a very weird and long list. It's much more difficult than the original due to some of the words being a bit uncommon.
 
 ## Development
 
