@@ -2,10 +2,6 @@
 
 module Wordle
   class List
-    def initialize(length = 5)
-      @length = length
-    end
-
     def random
       list.sample.downcase.strip
     end
