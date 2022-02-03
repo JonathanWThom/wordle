@@ -14,10 +14,10 @@ Ruby implementation of [Wordle](https://www.powerlanguage.co.uk/wordle/).
 
 Just run `wordle` from the command line.
 
+This version will pull a new word at random every time you run it from a very weird and long list. It's much more difficult than the original due to some of the words being a bit uncommon.
+
 After the game, a hash will be included with your result. A friend can pass this
 hash as the `-i` option to play the same word as you, e.g. `wordle -i ed541a`.
-
-This version will pull a new word at random every time you run it from a very weird and long list. It's much more difficult than the original due to some of the words being a bit uncommon.
 
 ## Development
 
