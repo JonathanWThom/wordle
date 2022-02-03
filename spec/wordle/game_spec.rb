@@ -13,7 +13,7 @@ RSpec.describe Wordle::Game do
     context "correct word is guessed" do
       let(:input) { target_word }
 
-      specify { expect { described_class.new.play }.to output(/Winner!/).to_stdout }
+      specify { expect { described_class.new.play }.to output(/🟩🟩🟩🟩🟩/).to_stdout }
     end
   end
 end
