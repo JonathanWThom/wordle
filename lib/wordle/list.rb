@@ -4,6 +4,7 @@ module Wordle
   class List
     def random
       list.sample.downcase.strip
+      "fancy"
     end
 
     def invalid?(word)

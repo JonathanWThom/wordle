@@ -20,6 +20,7 @@ module Wordle
 
       Legend.print
       puts "Guess a 5 letter word: "
+      guesses = []
 
       while attempts < 6 && !winner
         guess = gets.chomp
@@ -31,7 +32,9 @@ module Wordle
         end
 
         analyzer = GuessAnalyzer.new(@target_word, guess)
-        puts analyzer.colors
+        colors, squares = analyzer.colors
+        guesses << squares
+        puts colors
 
         if analyzer.match?
           winner = true
@@ -43,6 +46,7 @@ module Wordle
 
       if winner
         puts "Winner!"
+        puts guesses
       else
         puts "Word was: #{@target_word}"
         puts "Better luck next time!"
