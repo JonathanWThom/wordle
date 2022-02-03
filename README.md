@@ -2,7 +2,7 @@
 
 Ruby implementation of [Wordle](https://www.powerlanguage.co.uk/wordle/).
 
-<img width="785" alt="Screen Shot 2022-01-14 at 8 10 22 PM" src="https://user-images.githubusercontent.com/22665228/149608330-f5514be8-c0d9-4860-9ed4-d652fdb35cb3.png">
+<img width="869" alt="Screen Shot 2022-02-02 at 10 32 02 PM" src="https://user-images.githubusercontent.com/22665228/152292863-33743039-d9f4-4afa-a321-684d7b67cdb3.png">
 
 [![Build](https://github.com/JonathanWThom/wordle/actions/workflows/build.yml/badge.svg)](https://github.com/JonathanWThom/wordle/actions/workflows/build.yml)
 
