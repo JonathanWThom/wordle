@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "digest"
+require "optparse"
 require_relative "string"
 require_relative "wordle/version"
 require_relative "wordle/source"

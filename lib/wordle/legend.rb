@@ -10,6 +10,8 @@ module Wordle
       puts green_example
       puts yellow_example
       puts gray_example
+      puts "\nRestart and add -i flag to target a specific word by hash, for example:"
+      puts "$ wordle -i ed541a\n\n"
     end
 
     private

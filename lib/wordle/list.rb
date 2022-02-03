@@ -4,7 +4,16 @@ module Wordle
   class List
     def random
       list.sample.downcase.strip
-      "fancy"
+    end
+
+    def by_hash(hash)
+      word = list.detect do |word|
+        Digest::SHA2.hexdigest(word.downcase.strip)[..5] == hash
+      end
+
+      raise Wordle::Error, "Invalid word identifier, are you sure you copied it correctly?" if word.nil?
+
+      word
     end
 
     def invalid?(word)
