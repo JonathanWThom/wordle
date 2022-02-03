@@ -16,13 +16,12 @@ module Wordle
 
     def play
       winner = false
-      attempts = 0
 
       Legend.print
       puts "Guess a 5 letter word: "
       guesses = []
 
-      while attempts < 6 && !winner
+      while guesses.length < 6 && !winner
         guess = gets.chomp
 
         validator = GuessValidator.new(guess, @list)
@@ -32,20 +31,18 @@ module Wordle
         end
 
         analyzer = GuessAnalyzer.new(@target_word, guess)
-        colors, squares = analyzer.colors
-        guesses << squares
-        puts colors
+        puts analyzer.colors
+        guesses << analyzer.squares
 
         if analyzer.match?
           winner = true
           break
         end
-
-        attempts += 1
       end
 
       if winner
-        puts "Winner!"
+        puts "\nWordle Gem <hash> #{guesses.length}/6\n\n"
+
         puts guesses
       else
         puts "Word was: #{@target_word}"
