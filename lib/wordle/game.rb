@@ -6,9 +6,9 @@ module Wordle
       new.play
     end
 
-    def initialize(options_reader = Options)
+    def initialize(options_reader = Options.new)
       @list = List.new
-      @options = options_reader.new.read
+      @options = options_reader.read
       @target_word = generate_word
     end
 
@@ -23,6 +23,8 @@ module Wordle
         guess = gets.chomp
 
         validator = GuessValidator.new(guess, @list)
+        validator.validate_normal_mode
+        validator.validate_hard_mode(must_match, must_include) if @options[:difficult]
         if validator.invalid?
           puts validator.error
           next
@@ -31,6 +33,10 @@ module Wordle
         analyzer = GuessAnalyzer.new(@target_word, guess)
         puts analyzer.colors
         guesses << analyzer.squares
+        if @options[:difficult]
+          must_match = analyzer.must_match
+          must_include = analyzer.must_includes
+        end
 
         if analyzer.match?
           winner = true
