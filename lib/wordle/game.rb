@@ -6,9 +6,9 @@ module Wordle
       new.play
     end
 
-    def initialize
+    def initialize(options_reader = Options)
       @list = List.new
-      @options = read_options
+      @options = options_reader.new.read
       @target_word = generate_word
     end
 
@@ -57,25 +57,6 @@ module Wordle
       else
         @list.random
       end
-    end
-
-    def read_options
-      options = {}
-      parser = OptionParser.new do |opts|
-        opts.banner = "Usage: wordle [options]"
-
-        opts.on("-iIDENTIFIER", "--identifier=IDENTIFIER", "Pass word identifer to target a specific word that someone else has played. Identifier gets printed at the end of the game to share.") do |i|
-          options[:identifier] = i
-        end
-      end
-
-      begin
-        parser.parse!
-      rescue OptionParser::InvalidOption
-        puts "Option not recognized"
-      end
-
-      options
     end
   end
 end
