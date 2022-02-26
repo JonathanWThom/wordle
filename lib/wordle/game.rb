@@ -33,10 +33,6 @@ module Wordle
         analyzer = GuessAnalyzer.new(@target_word, guess)
         puts analyzer.colors
         guesses << analyzer.squares
-        if @options[:difficult]
-          must_match = analyzer.must_match
-          must_include = analyzer.must_includes
-        end
 
         if analyzer.match?
           winner = true

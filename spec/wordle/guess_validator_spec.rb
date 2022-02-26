@@ -25,46 +25,53 @@ RSpec.describe Wordle::GuessValidator do
   end
 
   describe "#invalid?" do
-    subject { instance.invalid? }
+    context "normal mode" do
+      subject {
+        instance.validate_normal_mode
+        instance.invalid?
+      }
 
-    context "guess is not 5 letters long" do
-      include_context "guess is not 5 letters long"
+      context "guess is not 5 letters long" do
+        include_context "guess is not 5 letters long"
 
-      it { is_expected.to eq true }
-    end
+        it { is_expected.to eq true }
+      end
 
-    context "guess is not in list" do
-      include_context "guess is not in list"
+      context "guess is not in list" do
+        include_context "guess is not in list"
 
-      it { is_expected.to eq true }
-    end
+        it { is_expected.to eq true }
+      end
 
-    context "guess is valid" do
-      include_context "guess is valid"
+      context "guess is valid" do
+        include_context "guess is valid"
 
-      it { is_expected.to eq false }
+        it { is_expected.to eq false }
+      end
     end
   end
 
   describe "#error" do
     subject { instance.error }
 
-    before { instance.invalid? }
+    context "normal mode" do
+      before { instance.validate_normal_mode }
 
-    context "guess is not 5 letters long" do
-      include_context "guess is not 5 letters long"
+      context "guess is not 5 letters long" do
+        include_context "guess is not 5 letters long"
 
-      it { is_expected.to eq "Guess must be 5 letters long" }
-    end
+        it { is_expected.to eq "Guess must be 5 letters long" }
+      end
 
-    context "guess is not in list" do
-      include_context "guess is not in list"
-      it { is_expected.to eq "Guess must be a real word" }
-    end
+      context "guess is not in list" do
+        include_context "guess is not in list"
+        it { is_expected.to eq "Guess not in word list" }
+      end
 
-    context "guess is valid" do
-      include_context "guess is valid"
-      it { is_expected.to be_nil }
+      context "guess is valid" do
+        include_context "guess is valid"
+        it { is_expected.to be_nil }
+      end
     end
   end
 end
