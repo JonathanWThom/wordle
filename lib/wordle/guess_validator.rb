@@ -31,9 +31,8 @@ module Wordle
       end
 
       @guess.each_char.with_index do |letter, i|
-        if must_match[i] == "letter"
-          # nth/rd
-          @error = "#{i+1} letter must be #{letter}"
+        if must_match[i] == letter
+          @error = "#{i+1}.ordinalize letter must be #{letter}"
           break
         end
       end

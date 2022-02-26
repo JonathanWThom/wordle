@@ -2,6 +2,7 @@
 
 require "digest"
 require "optparse"
+require_relative "integer"
 require_relative "string"
 require_relative "wordle/version"
 require_relative "wordle/options"

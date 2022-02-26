@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative "../string"
-
 module Wordle
   class GuessAnalyzer
     def initialize(target_word, guess)
