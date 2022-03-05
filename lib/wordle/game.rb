@@ -24,7 +24,7 @@ module Wordle
 
         validator = GuessValidator.new(guess, @list)
         validator.validate_normal_mode
-        validator.validate_hard_mode(must_match, must_include) if @options[:difficult]
+        validator.validate_hard_mode(must_include, must_match) if @options[:difficult]
         if validator.invalid?
           puts validator.error
           next

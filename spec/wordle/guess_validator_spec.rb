@@ -18,6 +18,28 @@ RSpec.describe Wordle::GuessValidator do
     let(:guess) { "bagel" }
   end
 
+  shared_context "hard mode" do
+    before { instance.validate_hard_mode(must_include, must_match) }
+  end
+
+  shared_context "guess does not include previously guessed letter" do
+    include_context "guess is valid"
+    let(:must_match) { [] }
+    let(:must_include) { ["x"] }
+  end
+
+  shared_context "guess does not include previously matched letter" do
+    include_context "guess is valid"
+    let(:must_match) { ["y"] }
+    let(:must_include) { [] }
+  end
+
+  shared_context "guess includes all previously guessed and matched letters" do
+    include_context "guess is valid"
+    let(:must_match) { ["b"] }
+    let(:must_include) { ["a"] }
+  end
+
   shared_context "fake list" do
     let(:list) do
       FakeList.new
@@ -25,11 +47,10 @@ RSpec.describe Wordle::GuessValidator do
   end
 
   describe "#invalid?" do
+    subject { instance.invalid? }
+
     context "normal mode" do
-      subject {
-        instance.validate_normal_mode
-        instance.invalid?
-      }
+      before { instance.validate_normal_mode }
 
       context "guess is not 5 letters long" do
         include_context "guess is not 5 letters long"
@@ -46,6 +67,25 @@ RSpec.describe Wordle::GuessValidator do
       context "guess is valid" do
         include_context "guess is valid"
 
+        it { is_expected.to eq false }
+      end
+    end
+
+    context "hard mode" do
+      include_context "hard mode"
+
+      context "guess does not include previously guessed letter" do
+        include_context "guess does not include previously guessed letter"
+        it { is_expected.to eq true }
+      end
+
+      context "guess does not include previously matched letter" do
+        include_context "guess does not include previously matched letter"
+        it { is_expected.to eq true }
+      end
+
+      context "guess includes all previously guessed and matched letters" do
+        include_context "guess includes all previously guessed and matched letters"
         it { is_expected.to eq false }
       end
     end
@@ -70,6 +110,25 @@ RSpec.describe Wordle::GuessValidator do
 
       context "guess is valid" do
         include_context "guess is valid"
+        it { is_expected.to be_nil }
+      end
+    end
+
+    context "hard mode" do
+      include_context "hard mode"
+
+      context "guess does not include previously guessed letter" do
+        include_context "guess does not include previously guessed letter"
+        it { is_expected.to eq "Guess must include x" }
+      end
+
+      context "guess does not include previously matched letter" do
+        include_context "guess does not include previously matched letter"
+        it { is_expected.to eq "1st letter must be y" }
+      end
+
+      context "guess includes all previously guessed and matched letters" do
+        include_context "guess includes all previously guessed and matched letters"
         it { is_expected.to be_nil }
       end
     end

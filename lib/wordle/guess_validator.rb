@@ -7,7 +7,7 @@ module Wordle
     def initialize(guess, list, difficult = false)
       @guess = guess
       @list = list
-      @dificult = difficult
+      @dificult = difficult # remove me - or use???
     end
 
     def invalid?
@@ -22,7 +22,7 @@ module Wordle
       end
     end
 
-    def validate_hard_mode(must_match, must_include)
+    def validate_hard_mode(must_include, must_match)
       must_include.each do |letter|
         if !@guess.include?(letter)
           @error = "Guess must include #{letter}"
@@ -31,8 +31,9 @@ module Wordle
       end
 
       @guess.each_char.with_index do |letter, i|
-        if must_match[i] == letter
-          @error = "#{i + 1}.ordinalize letter must be #{letter}"
+        match = must_match[i]
+        if match && match != letter
+          @error = "#{(i + 1).ordinalize} letter must be #{match}"
           break
         end
       end
