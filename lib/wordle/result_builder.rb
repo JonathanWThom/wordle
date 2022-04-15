@@ -54,7 +54,7 @@ module Wordle
       options[result][:text]
     end
 
-    def square_color(result)
+    def square(result)
       options[result][:square]
     end
 

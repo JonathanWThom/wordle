@@ -20,7 +20,7 @@ module Wordle
 
     def squares
       raw_results.each_with_index.map do |result, i|
-        @result_builder.square_color(result)
+        @result_builder.square(result)
       end.join("")
     end
 
