@@ -6,28 +6,16 @@ module Wordle
     INCLUDED = :included
     MISS = :miss
 
-    TEXT_OPTIONS = {
-      MATCH => :green,
-      INCLUDED => :yellow,
-      MISS => :gray
+    DEFAULT_OPTIONS = {
+      MATCH => {text: :green, square: "🟩"},
+      INCLUDED => {text: :yellow, square: "🟨"},
+      MISS => {text: :gray, square: "⬛️"}
     }.freeze
 
-    SQUARE_OPTIONS = {
-      MATCH => "🟩",
-      INCLUDED => "🟨",
-      MISS => "⬛️"
-    }.freeze
-
-    CONTRAST_TEXT_OPTIONS = {
-      MATCH => :orange,
-      INCLUDED => :blue,
-      MISS => :gray
-    }.freeze
-
-    CONTRAST_SQUARE_OPTIONS = {
-      MATCH => "🟧",
-      INCLUDED => "🟦",
-      MISS => "⬛️"
+    CONTRAST_OPTIONS = {
+      MATCH => {text: :orange, square: "🟧"},
+      INCLUDED => {text: :blue, square: "🟦"},
+      MISS => {text: :gray, square: "⬛️"}
     }.freeze
 
     def initialize(contrast = false)
@@ -55,15 +43,20 @@ module Wordle
     end
 
     def text_color(result)
-      return TEXT_OPTIONS[result] if !@contrast
-
-      CONTRAST_TEXT_OPTIONS[result]
+      options[result][:text]
     end
 
     def square_color(result)
-      return SQUARE_OPTIONS[result] if !@contrast
+      options[result][:square]
+    end
 
-      CONTRAST_SQUARE_OPTIONS[result]
+    private
+
+    def options
+      @_options ||= begin
+        return DEFAULT_OPTIONS if !@contast
+        CONTRAST_OPTIONS
+      end
     end
   end
 end
