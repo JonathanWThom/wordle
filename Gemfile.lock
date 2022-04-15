@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    wordle (0.6.0)
+    wordle (0.7.0)
 
 GEM
   remote: https://rubygems.org/

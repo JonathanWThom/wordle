@@ -20,6 +20,7 @@ This version will pull a new word at random every time you run it from a very we
 Usage: wordle [options]
     -i, --identifier=IDENTIFIER      Pass word identifer to target a specific word that someone else has played. Identifier gets printed at the end of the game to share with a friend.
     -d, --difficult                  Hard mode. Any revealed hints must be used in subsequent guesses.
+    -c, --contrast                   High contrast mode. Matched letters will be orange. Included letters will be blue.
 ```
 
 ## Development

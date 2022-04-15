@@ -1,3 +1,7 @@
+## [0.7.0] - 2022-04-15
+
+- Adds high color contrast mode.
+
 ## [0.6.0] - 2022-04-14
 
 - Adds hard mode.
