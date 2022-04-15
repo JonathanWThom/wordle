@@ -7,7 +7,7 @@ RSpec.describe Wordle::GuessValidator do
       list,
       hard_mode,
       must_include,
-      must_match,
+      must_match
     )
   end
   let(:hard_mode) { false }

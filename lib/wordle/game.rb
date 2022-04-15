@@ -28,8 +28,8 @@ module Wordle
           guess,
           @list,
           @options[:difficult],
-          must_include, # actually need to create this
-          must_match, # and this
+          must_include,
+          must_match
         )
         if validator.invalid?
           puts validator.error

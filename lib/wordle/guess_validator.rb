@@ -2,8 +2,6 @@
 
 module Wordle
   class GuessValidator
-    attr_reader :error
-
     def initialize(
       guess,
       list,
@@ -16,17 +14,26 @@ module Wordle
       @difficult = difficult
       @must_include = must_include
       @must_match = must_match
+      @validated = false
     end
 
     def invalid?
-      validate_normal_mode
-      return true if !@error.nil?
+      !error.nil?
+    end
 
-      validate_hard_mode if @difficult
-      !@error.nil?
+    def error
+      validate if !@validated
+
+      @error
     end
 
     private
+
+    def validate
+      validate_normal_mode
+      validate_hard_mode if @difficult
+      @validated = true
+    end
 
     def validate_normal_mode
       if @guess.length != 5
