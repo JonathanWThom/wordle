@@ -14,4 +14,12 @@ class String
   def gray
     colorize(47)
   end
+
+  def light_blue
+    colorize(117)
+  end
+
+  def orange
+    colorize(202)
+  end
 end

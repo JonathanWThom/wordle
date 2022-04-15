@@ -12,26 +12,32 @@ module Wordle
     end
 
     def colors
-      raw_colors.each_with_index.map do |color, i|
-        guess_letters[i].send(color)
+      result_map = {
+        match: :green,
+        included: :yellow,
+        miss: :gray
+      }
+
+      raw_results.each_with_index.map do |result, i|
+        guess_letters[i].send(result_map[result])
       end.join("")
     end
 
     def squares
-      color_map = {
-        green: "🟩",
-        yellow: "🟨",
-        gray: "⬛️"
+      result_map = {
+        match: "🟩",
+        included: "🟨",
+        miss: "⬛️"
       }
 
-      raw_colors.each_with_index.map do |color, i|
-        color_map[color]
+      raw_results.each_with_index.map do |result, i|
+        result_map[result]
       end.join("")
     end
 
     def must_include(prev_must_include)
-      raw_colors.each_with_index do |color, i|
-        if color == :yellow && !prev_must_include.include?(guess_letters[i])
+      raw_results.each_with_index do |result, i|
+        if result == :included && !prev_must_include.include?(guess_letters[i])
           prev_must_include << guess_letters[i]
         end
       end
@@ -40,8 +46,8 @@ module Wordle
     end
 
     def must_match(prev_must_match)
-      raw_colors.each_with_index do |color, i|
-        if color == :green
+      raw_results.each_with_index do |result, i|
+        if result == :match
           prev_must_match[i] = guess_letters[i]
         end
       end
@@ -55,29 +61,29 @@ module Wordle
       @_guess_letters ||= @guess.chars
     end
 
-    def raw_colors
-      @_raw_colors ||= begin
+    def raw_results
+      @_raw_results ||= begin
         target_letters = @target_word.chars
-        colors = []
+        results = []
 
         guess_letters.each_with_index do |letter, i|
           if letter == target_letters[i]
-            colors[i] = :green
+            results[i] = :match
             target_letters[i] = nil
           end
         end
 
         guess_letters.each_with_index do |letter, i|
-          if colors[i].nil?
-            colors[i] = if target_letters.include?(letter)
-              :yellow
+          if results[i].nil?
+            results[i] = if target_letters.include?(letter)
+              :included
             else
-              :gray
+              :miss
             end
           end
         end
 
-        colors
+        results
       end
     end
   end
