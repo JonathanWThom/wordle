@@ -4,10 +4,16 @@ module Wordle
   class GuessValidator
     attr_reader :error
 
-    def initialize(guess, list, difficult, must_include, must_match)
+    def initialize(
+      guess,
+      list,
+      difficult,
+      must_include,
+      must_match
+    )
       @guess = guess
       @list = list
-      @dificult = difficult
+      @difficult = difficult
       @must_include = must_include
       @must_match = must_match
     end
