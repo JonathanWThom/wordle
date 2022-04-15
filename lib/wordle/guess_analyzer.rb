@@ -31,8 +31,8 @@ module Wordle
 
     def must_include(prev_must_include)
       raw_colors.each_with_index do |color, i|
-        if color == :yellow && prev_must_include.include?(@guess_letters[i])
-          prev_must_include += @guess_letters[i]
+        if color == :yellow && !prev_must_include.include?(guess_letters[i])
+          prev_must_include << guess_letters[i]
         end
       end
 
@@ -42,7 +42,7 @@ module Wordle
     def must_match(prev_must_match)
       raw_colors.each_with_index do |color, i|
         if color == :green
-          prev_must_match[i] = @guess_letters[i]
+          prev_must_match[i] = guess_letters[i]
         end
       end
 
@@ -52,7 +52,7 @@ module Wordle
     private
 
     def guess_letters
-      @_guess_letters = @guess.chars
+      @_guess_letters ||= @guess.chars
     end
 
     def raw_colors
