@@ -3,8 +3,7 @@
 module Wordle
   class List
     def random
-      #list.sample.downcase.strip
-      "blank"
+      list.sample.downcase.strip
     end
 
     def by_hash(hash)

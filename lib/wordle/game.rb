@@ -2,8 +2,8 @@
 
 module Wordle
   class Game
-    def self.play
-      new.play
+    def self.play(*args)
+      new(*args).play
     end
 
     def initialize(options_reader = Options.new)
@@ -37,8 +37,6 @@ module Wordle
         end
 
         analyzer = GuessAnalyzer.new(@target_word, guess)
-        # must_include is array of letters to include
-        # must match is array of nil and letters at index
         puts analyzer.colors
         guesses << analyzer.squares
         if @options[:difficult]
