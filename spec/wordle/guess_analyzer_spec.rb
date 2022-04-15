@@ -21,4 +21,21 @@ RSpec.describe Wordle::GuessAnalyzer do
       it { is_expected.to eq ["t", "a", "n", "g", "y"].map(&:green).join("") }
     end
   end
+
+  describe "#match?" do
+    subject { described_class.new(target_word, guess).match? }
+    let(:target_word) { "irate" }
+
+    context "guess is correct" do
+      let(:guess) { target_word }
+
+      it { is_expected.to be_truthy }
+    end
+
+    context "guess is incorrect" do
+      let(:guess) { "scoot" }
+
+      it { is_expected.to be_falsey }
+    end
+  end
 end
