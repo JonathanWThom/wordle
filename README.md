@@ -16,8 +16,11 @@ Just run `wordle` from the command line.
 
 This version will pull a new word at random every time you run it from a very weird and long list. It's much more difficult than the original due to some of the words being a bit uncommon.
 
-After the game, a hash will be included with your result. A friend can pass this
-hash as the `-i` option to play the same word as you, e.g. `wordle -i ed541a`.
+```
+Usage: wordle [options]
+    -i, --identifier=IDENTIFIER      Pass word identifer to target a specific word that someone else has played. Identifier gets printed at the end of the game to share with a friend.
+    -d, --difficult                  Hard mode. Any revealed hints must be used in subsequent guesses.
+```
 
 ## Development
 
@@ -31,7 +34,7 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/Jonath
 
 ## Acknowledgements
 
-I cribbed my word list from the Wordle site itself. I have no association with the site or its creator, I'm just a fan!
+I cribbed my word list from the Wordle site itself. I have no association with the site, its creator, or the New York Times - I'm just a fan!
 
 ## License
 
