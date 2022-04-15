@@ -1,3 +1,7 @@
+## [0.6.0] - 2022-04-14
+
+- Adds hard mode.
+
 ## [0.5.0] - 2022-02-02
 
 - Prints outs squares for sharing at the end of a game.
