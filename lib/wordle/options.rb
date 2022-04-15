@@ -15,6 +15,10 @@ module Wordle
         opts.on("-d", "--difficult", "Hard mode. Any revealed hints must be used in subsequent guesses.") do |d|
           options[:difficult] = d
         end
+
+        opts.on("-c", "--contrast", "High contrast mode. Matched letters will be orange. Included letters will be blue.") do |c|
+          options[:contrast] = c
+        end
       end
 
       begin

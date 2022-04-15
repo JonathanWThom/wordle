@@ -10,12 +10,13 @@ module Wordle
       @list = List.new
       @options = options_reader.read
       @target_word = generate_word
+      @result_builder = ResultBuilder.new(@options[:contrast])
     end
 
     def play
       winner = false
 
-      Legend.print
+      Legend.print(@result_builder)
       puts "Guess a 5 letter word: "
       guesses = []
       must_include = []
@@ -36,7 +37,11 @@ module Wordle
           next
         end
 
-        analyzer = GuessAnalyzer.new(@target_word, guess)
+        analyzer = GuessAnalyzer.new(
+          @target_word,
+          guess,
+          @result_builder
+        )
         puts analyzer.colors
         guesses << analyzer.squares
         if @options[:difficult]

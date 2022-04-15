@@ -42,6 +42,14 @@ module Wordle
       MISS
     end
 
+    def match_text_color
+      options[match][:text]
+    end
+
+    def included_text_color
+      options[included][:text]
+    end
+
     def text_color(result)
       options[result][:text]
     end
@@ -53,10 +61,8 @@ module Wordle
     private
 
     def options
-      @_options ||= begin
-        return DEFAULT_OPTIONS if !@contast
-        CONTRAST_OPTIONS
-      end
+      return DEFAULT_OPTIONS if !@contrast
+      @_options ||= CONTRAST_OPTIONS
     end
   end
 end
