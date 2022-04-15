@@ -10,13 +10,29 @@ module Wordle
       MATCH => :green,
       INCLUDED => :yellow,
       MISS => :gray
-    }
+    }.freeze
 
     SQUARE_OPTIONS = {
       MATCH => "🟩",
       INCLUDED => "🟨",
       MISS => "⬛️"
-    }
+    }.freeze
+
+    CONTRAST_TEXT_OPTIONS = {
+      MATCH => :orange,
+      INCLUDED => :blue,
+      MISS => :gray
+    }.freeze
+
+    CONTRAST_SQUARE_OPTIONS = {
+      MATCH => "🟧",
+      INCLUDED => "🟦",
+      MISS => "⬛️"
+    }.freeze
+
+    def initialize(contrast = false)
+      @contrast = contrast
+    end
 
     def match?(result)
       result == MATCH
@@ -39,11 +55,15 @@ module Wordle
     end
 
     def text_color(result)
-      TEXT_OPTIONS[result]
+      return TEXT_OPTIONS[result] if !@contrast
+
+      CONTRAST_TEXT_OPTIONS[result]
     end
 
     def square_color(result)
-      SQUARE_OPTIONS[result]
+      return SQUARE_OPTIONS[result] if !@contrast
+
+      CONTRAST_SQUARE_OPTIONS[result]
     end
   end
 end

@@ -15,11 +15,11 @@ class String
     colorize(47)
   end
 
-  def light_blue
-    colorize(117)
+  def blue
+    colorize(46)
   end
 
   def orange
-    colorize(202)
+    "\033[48:2:255:165:0m#{self}\033[m"
   end
 end
