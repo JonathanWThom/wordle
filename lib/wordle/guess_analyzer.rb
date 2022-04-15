@@ -2,9 +2,10 @@
 
 module Wordle
   class GuessAnalyzer
-    def initialize(target_word, guess)
+    def initialize(target_word, guess, result_builder = ResultBuilder.new)
       @target_word = target_word
       @guess = guess
+      @result_builder = result_builder
     end
 
     def match?
@@ -12,32 +13,20 @@ module Wordle
     end
 
     def colors
-      result_map = {
-        match: :green,
-        included: :yellow,
-        miss: :gray
-      }
-
       raw_results.each_with_index.map do |result, i|
-        guess_letters[i].send(result_map[result])
+        guess_letters[i].send(@result_builder.text_color(result))
       end.join("")
     end
 
     def squares
-      result_map = {
-        match: "🟩",
-        included: "🟨",
-        miss: "⬛️"
-      }
-
       raw_results.each_with_index.map do |result, i|
-        result_map[result]
+        @result_builder.square_color(result)
       end.join("")
     end
 
     def must_include(prev_must_include)
       raw_results.each_with_index do |result, i|
-        if result == :included && !prev_must_include.include?(guess_letters[i])
+        if @result_builder.included?(result) && !prev_must_include.include?(guess_letters[i])
           prev_must_include << guess_letters[i]
         end
       end
@@ -47,7 +36,7 @@ module Wordle
 
     def must_match(prev_must_match)
       raw_results.each_with_index do |result, i|
-        if result == :match
+        if @result_builder.match?(result)
           prev_must_match[i] = guess_letters[i]
         end
       end
@@ -68,7 +57,7 @@ module Wordle
 
         guess_letters.each_with_index do |letter, i|
           if letter == target_letters[i]
-            results[i] = :match
+            results[i] = @result_builder.match
             target_letters[i] = nil
           end
         end
@@ -76,9 +65,9 @@ module Wordle
         guess_letters.each_with_index do |letter, i|
           if results[i].nil?
             results[i] = if target_letters.include?(letter)
-              :included
+              @result_builder.included
             else
-              :miss
+              @result_builder.miss
             end
           end
         end
