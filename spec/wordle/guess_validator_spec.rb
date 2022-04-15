@@ -1,7 +1,18 @@
 # frozen_string_literal: true
 
 RSpec.describe Wordle::GuessValidator do
-  let(:instance) { described_class.new(guess, list) }
+  let(:instance) do
+    described_class.new(
+      guess,
+      list,
+      hard_mode,
+      must_include,
+      must_match,
+    )
+  end
+  let(:hard_mode) { false }
+  let(:must_include) { [] }
+  let(:must_match) { [] }
 
   shared_context "guess is not 5 letters long" do
     include_context "fake list"
@@ -19,19 +30,17 @@ RSpec.describe Wordle::GuessValidator do
   end
 
   shared_context "hard mode" do
-    before { instance.validate_hard_mode(must_include, must_match) }
+    let(:hard_mode) { true }
   end
 
   shared_context "guess does not include previously guessed letter" do
     include_context "guess is valid"
-    let(:must_match) { [] }
     let(:must_include) { ["x"] }
   end
 
   shared_context "guess does not include previously matched letter" do
     include_context "guess is valid"
     let(:must_match) { ["y"] }
-    let(:must_include) { [] }
   end
 
   shared_context "guess includes all previously guessed and matched letters" do
@@ -50,8 +59,6 @@ RSpec.describe Wordle::GuessValidator do
     subject { instance.invalid? }
 
     context "normal mode" do
-      before { instance.validate_normal_mode }
-
       context "guess is not 5 letters long" do
         include_context "guess is not 5 letters long"
 
@@ -95,8 +102,6 @@ RSpec.describe Wordle::GuessValidator do
     subject { instance.error }
 
     context "normal mode" do
-      before { instance.validate_normal_mode }
-
       context "guess is not 5 letters long" do
         include_context "guess is not 5 letters long"
 

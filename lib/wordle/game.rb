@@ -18,21 +18,33 @@ module Wordle
       Legend.print
       puts "Guess a 5 letter word: "
       guesses = []
+      must_include = []
+      must_match = Array.new(5)
 
       while guesses.length < 6 && !winner
         guess = gets.chomp
 
-        validator = GuessValidator.new(guess, @list)
-        validator.validate_normal_mode
-        validator.validate_hard_mode(must_include, must_match) if @options[:difficult]
+        validator = GuessValidator.new(
+          guess,
+          @list,
+          @options[:difficult],
+          must_include, # actually need to create this
+          must_match, # and this
+        )
         if validator.invalid?
           puts validator.error
           next
         end
 
         analyzer = GuessAnalyzer.new(@target_word, guess)
+        # must_include is array of letters to include
+        # must match is array of nil and letters at index
         puts analyzer.colors
         guesses << analyzer.squares
+        if @options[:difficult]
+          must_include = analyzer.must_include(must_include)
+          must_match = analyzer.must_match(must_match)
+        end
 
         if analyzer.match?
           winner = true
