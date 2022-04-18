@@ -14,6 +14,8 @@ module Wordle
     end
 
     def play
+      History.new.show
+      return
       winner = false
 
       Legend.print(@result_builder)
