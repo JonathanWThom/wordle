@@ -11,11 +11,10 @@ module Wordle
       @options = options_reader.read
       @target_word = generate_word
       @result_builder = ResultBuilder.new(@options[:contrast])
+      @history = History.new
     end
 
     def play
-      History.new.show
-      return
       winner = false
 
       Legend.print(@result_builder)
@@ -59,13 +58,16 @@ module Wordle
 
       hash = Digest::SHA2.hexdigest(@target_word)[..5]
       if winner
+        @history.update(guesses.length)
         puts "\nWordle Gem #{hash} #{guesses.length}/6\n\n"
       else
+        @history.update
         puts "\nWord was: #{@target_word}\n"
         puts "\nWordle Gem #{hash} X/6*\n\n"
       end
 
       puts guesses
+      puts @history.show
     end
 
     private
